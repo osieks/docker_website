@@ -29,6 +29,7 @@ echo "<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-a
 echo "<link rel='stylesheet' type='text/css' href='styles.css'>";
 echo "</head>";
 echo "<body>";
+echo "<div id='left-tab'>";
 echo "<h1 id='username' style='cursor:pointer;'><span style='font-style: italic;border: 1px solid white;'>$user_name <i class='fa fa-caret-down'></i></span> github projects</h1>";
 foreach ($github_projects as $project) {
     echo "<div class='project' data-repo='{$project->name}'>";
@@ -41,6 +42,7 @@ foreach ($github_projects as $project) {
     echo "</div>";
 }
 
+echo "</div>";
 echo "<div id='slide-tab'></div>";
 
 echo "<script src='scripts.js'></script>";
