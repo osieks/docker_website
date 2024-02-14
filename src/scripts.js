@@ -38,22 +38,51 @@ var projects = document.querySelectorAll('.project');
 projects.forEach(function(project) {
     project.addEventListener('click', function() {
         var repo = this.getAttribute('data-repo');
-        fetch('https://api.github.com/repos/osieks/' + repo + '/contents')
-            .then(response => response.json())
-            .then(data => {
-                var files;
-                if (Array.isArray(data)) {
-                    files = data.map(function(file) {
-                        return '<p>' + file.name + '</p>';
-                    }).join('');
-                } else {
-                    files = '<p>There\'s nothing inside this project.</p>';
-                }
-                slideTab.innerHTML = files;
-                slideTab.classList.add('visible');
-            });
+        fetchContents('https://api.github.com/repos/osieks/' + repo + '/contents');
     });
 });
+
+function fetchContents(url, indent = '') {
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            if (Array.isArray(data)) {
+                data.forEach(function(file) {
+                    if (file.type === 'dir') {
+                        slideTab.innerHTML += indent + '<p class="file" data-file="' + file.url + '">' + file.name + '</p><div class="file-content"></div>';
+                        fetchContents(file.url, indent + '  ');
+                    } else {
+                        slideTab.innerHTML += indent + '<p class="file" data-file="' + file.url + '">' + file.name + '</p><div class="file-content"></div>';
+                    }
+                });
+            } else {
+                slideTab.innerHTML += '<p>There\'s nothing inside this project.</p>';
+            }
+            slideTab.classList.add('visible');
+            var fileElements = document.querySelectorAll('.file');
+            fileElements.forEach(function(fileElement) {
+                fileElement.addEventListener('click', function() {
+                    var fileUrl = this.getAttribute('data-file');
+                    var fileContentElement = this.nextElementSibling;
+                    if (fileContentElement.style.display === 'none') {
+                        fetch(fileUrl)
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.content) {
+                                    var decodedContent = atob(data.content);
+                                    fileContentElement.textContent = decodedContent;
+                                } else {
+                                    fileContentElement.textContent = 'Unable to fetch file content.';
+                                }
+                                fileContentElement.style.display = 'block';
+                            });
+                    } else {
+                        fileContentElement.style.display = 'none';
+                    }
+                });
+            });
+        });
+}
 
 window.addEventListener('click', function(e) {
     if (!slideTab.contains(e.target) && !e.target.classList.contains('project')) {

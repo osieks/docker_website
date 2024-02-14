@@ -21,7 +21,11 @@ echo "<body>";
 
 foreach ($github_projects as $project) {
     echo "<div class='project' data-repo='{$project->name}'>";
-    echo "<h2><a href='{$project->html_url}'>{$project->name}</a></h2>";
+    echo "<h2><a href='{$project->html_url}'>{$project->name}</a>";
+    if ($project->name == 'docker_website') {
+        echo " <span style='color:green;'> <-that's me!</span>";
+    }
+    echo "</h2>";
     echo "<p>{$project->description}</p>";
     echo "</div>";
 }
