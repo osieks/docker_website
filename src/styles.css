@@ -1,0 +1,37 @@
+body {
+    background-color: white;
+    font-family: Arial, sans-serif;
+}
+.project {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    opacity: 0;
+    transform: translateY(0);
+    transition: all 1s ease-out;
+    cursor: pointer; /* Add this line */
+}
+.project.visible-down {
+    opacity: 1;
+    transform: translateY(+20px);
+}
+.project.visible-up {
+    opacity: 1;
+    transform: translateY(-20px);
+}
+#slide-tab {
+    position: fixed;
+    right: -300px;
+    top: 0;
+    width: 300px;
+    height: 100%;
+    background-color: #f9f9f9;
+    transition: right 0.5s ease-out;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+#slide-tab.visible {
+    right: 0;
+}
