@@ -47,16 +47,17 @@ function fetchContents(url, indent = '') {
         .then(response => response.json())
         .then(data => {
             if (Array.isArray(data)) {
+                slideTab.innerHTML = '';
                 data.forEach(function(file) {
                     if (file.type === 'dir') {
-                        slideTab.innerHTML += indent + '<p class="file" data-file="' + file.url + '">' + file.name + '</p><div class="file-content"></div>';
+                        slideTab.innerHTML += indent + '<p class="file" style="cursor:pointer;" data-file="' + file.url + '">' + file.name + '</p><div class="file-content" style="display: none;"></div>';
                         fetchContents(file.url, indent + '  ');
                     } else {
-                        slideTab.innerHTML += indent + '<p class="file" data-file="' + file.url + '">' + file.name + '</p><div class="file-content"></div>';
+                        slideTab.innerHTML += indent + '<p class="file" style="cursor:pointer;" data-file="' + file.url + '">' + file.name + '</p><div class="file-content" style="display: none;"></div>';
                     }
                 });
             } else {
-                slideTab.innerHTML += '<p>There\'s nothing inside this project.</p>';
+                slideTab.innerHTML += '<p>There\'s nothing inside this project or API rate_limit has been exceeded.</p>';
             }
             slideTab.classList.add('visible');
             var fileElements = document.querySelectorAll('.file');

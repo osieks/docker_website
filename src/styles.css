@@ -1,19 +1,34 @@
 body {
-    background-color: white;
+    margin-bottom: 50px;
+    background-color: rgb(34, 45, 61); /* changed */
     font-family: Arial, sans-serif;
+    color: white; /* added */
+}
+h1{
+    margin-top: 50px;
+    margin-bottom: 70px;
+    margin-left: 20px;
+    color: white; /* added */
 }
 .project {
     margin-bottom: 20px;
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid #222; /* changed */
     border-radius: 5px;
     opacity: 0;
     transform: translateY(0);
     transition: all 1s ease-out;
     cursor: pointer; 
+    background-color: rgb(76, 101, 137); /* added */
+    color: white; /* added */
+    -webkit-transition: color 1s;
+    -moz-transition:    color 1s;
+    -ms-transition:     color 1s;
+    -o-transition:      color 1s;
+    transition:         color 1s;
 }
 .project:hover {
-    background-color: #f0f0f0; 
+    background-color: rgb(55, 73, 99); /* changed */
 }
 
 .project:hover:not(.visible-down):not(.visible-up) {
@@ -30,27 +45,47 @@ body {
 }
 #slide-tab {
     position: fixed;
-    right: -50%; 
+    right: -33%; 
     top: 0;
-    width: 50%; 
+    width: 33%; 
     height: 100%;
-    background-color: #f9f9f9;
+    background-color: rgb(55, 73, 99); /* changed */
     transition: right 0.5s ease-out;
     padding: 20px;
     box-sizing: border-box;
     overflow-y: auto;
+    color: white; /* added */
 }
 #slide-tab.visible {
     right: 0;
 }
 .file-content {
-    color: white;
-    background-color: black;
+    color: white; /* changed */
+    background-color: rgb(33, 44, 60); /* changed */
     padding: 10px;
+    display: none;
+}
+.file{
+    color: white;
+    -webkit-transition: color 1s;
+    -moz-transition:    color 1s;
+    -ms-transition:     color 1s;
+    -o-transition:      color 1s;
+    transition:         color 1s;
+}
+.file:hover{
+    color: yellow;
 }
 a {
     text-decoration: none; 
+    color: cyan; /* added */
+    -webkit-transition: color 1s;
+    -moz-transition:    color 1s;
+    -ms-transition:     color 1s;
+    -o-transition:      color 1s;
+    transition:         color 1s;
 }
 a:hover {
     text-decoration: underline;
+    color: yellow; /* added */
 }
