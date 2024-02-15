@@ -37,6 +37,7 @@ var slideTab = document.getElementById('slide-tab');
 var projects = document.querySelectorAll('.project');
 projects.forEach(function(project) {
     project.addEventListener('click', function() {
+        slideTab.innerHTML = '';
         var repo = this.getAttribute('data-repo');
         fetchContents('https://api.github.com/repos/osieks/' + repo + '/contents');
     });
@@ -47,11 +48,10 @@ function fetchContents(url, indent = '') {
         .then(response => response.json())
         .then(data => {
             if (Array.isArray(data)) {
-                slideTab.innerHTML = '';
                 data.forEach(function(file) {
                     if (file.type === 'dir') {
-                        slideTab.innerHTML += indent + '<p class="file" style="cursor:pointer;" data-file="' + file.url + '">' + file.name + '</p><div class="file-content" style="display: none;"></div>';
-                        fetchContents(file.url, indent + '  ');
+                        slideTab.innerHTML += indent + '<p class="folder" style="cursor:pointer;" data-file="' + file.url + '">' + file.name + '</p><div class="file-content" style="display: none;"></div>';
+                        fetchContents(file.url,'&rdsh;<span style="display: inline; background-color: #222">"' + indent +"</span><br></br>");
                     } else {
                         slideTab.innerHTML += indent + '<p class="file" style="cursor:pointer;" data-file="' + file.url + '">' + file.name + '</p><div class="file-content" style="display: none;"></div>';
                     }

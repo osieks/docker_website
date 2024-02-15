@@ -21,18 +21,9 @@ h1{
     cursor: pointer; 
     background-color: rgb(76, 101, 137); /* added */
     color: white; /* added */
-    -webkit-transition: color 1s;
-    -moz-transition:    color 1s;
-    -ms-transition:     color 1s;
-    -o-transition:      color 1s;
-    transition:         color 1s;
 }
 .project:hover {
     background-color: rgb(55, 73, 99); /* changed */
-}
-
-.project:hover:not(.visible-down):not(.visible-up) {
-    transform: translateX(20px); 
 }
 
 .project.visible-down {
