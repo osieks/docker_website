@@ -11,41 +11,54 @@ h1{
     color: white; /* added */
 }
 .project {
-    margin-bottom: 20px;
     padding: 10px;
     border: 1px solid #222; /* changed */
     border-radius: 5px;
-    opacity: 0;
-    transform: translateY(0);
-    transition: all 1s ease-out;
+    opacity: 1;
     cursor: pointer; 
     background-color: rgb(76, 101, 137); /* added */
     color: white; /* added */
-}
-.project:hover {
-    background-color: rgb(55, 73, 99); /* changed */
+    transform: translateY(0);
+    transition: all 1s ease-out;
 }
 
-.project.visible-down {
+.project-wrapper{    
+    margin-bottom: 20px;
+    transform: translateY(0);
+    transition: all 1s ease-out;
+    background-color: #222; /* added */
+    border: 1px solid #222; /* changed */
+    border-radius: 5px;
+}
+.project-wrapper.visible-down {
     opacity: 1;
     transform: translateY(+20px);
 }
-.project.visible-up {
+.project-wrapper.visible-up {
     opacity: 1;
     transform: translateY(-20px);
 }
+
+.project:hover {
+    background-color: rgb(86, 111, 147); /* changed */
+    transform: translateY(-10px) translateX(10px); 
+    transition: all 0.5s ease-out;
+}
+
 #slide-tab {
     position: fixed;
     right: -33%; 
     top: 0;
     width: 33%; 
     height: 100%;
-    background-color: rgb(55, 73, 99); /* changed */
+    background-color: rgb(86, 111, 147); /* changed */
     transition: right 0.5s ease-out;
     padding: 20px;
     box-sizing: border-box;
     overflow-y: auto;
     color: white; /* added */
+    border-left:  10px #222 solid;
+    border-radius: 5px;
 }
 #slide-tab.visible {
     right: 0;

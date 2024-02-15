@@ -32,13 +32,14 @@ echo "<body>";
 echo "<div id='left-tab'>";
 echo "<h1 id='username' style='cursor:pointer;'><span style='font-style: italic;border: 1px solid white;'>$user_name <i class='fa fa-caret-down'></i></span> github projects</h1>";
 foreach ($github_projects as $project) {
-    echo "<div class='project' data-repo='{$project->name}'>";
+    echo "<div class='project-wrapper'><div class='project' data-repo='{$project->name}'>";
     echo "<h2><a href='{$project->html_url}'>{$project->name}</a>";
     if ($project->name == 'docker_website') {
         echo " <span style='color:white;'> <-that's what you're looking at right now!</span>";
     }
     echo "</h2>";
     echo "<p>{$project->description}</p>";
+    echo "</div>";
     echo "</div>";
 }
 

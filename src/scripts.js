@@ -1,7 +1,7 @@
 var lastScrollTop = 0;
 
 function checkVisibility() {
-    var projects = document.querySelectorAll('.project');
+    var projects = document.querySelectorAll('.project-wrapper');
     var window_height = window.innerHeight;
     var st = window.pageYOffset || document.documentElement.scrollTop;
     var scrollDown = true;
