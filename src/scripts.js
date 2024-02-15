@@ -50,10 +50,10 @@ function fetchContents(url, indent = '') {
             if (Array.isArray(data)) {
                 data.forEach(function(file) {
                     if (file.type === 'dir') {
-                        slideTab.innerHTML += indent + '<p class="folder" style="cursor:pointer;" data-file="' + file.url + '">' + file.name + '</p><div class="file-content" style="display: none;"></div>';
-                        fetchContents(file.url,'&rdsh;<span style="display: inline; background-color: #222">"' + indent +"</span><br></br>");
+                        slideTab.innerHTML += indent + '<p class="folder" data-file="' + file.url + '">&#128448;   ' + file.name + '</p><div class="file-content" style="display: none;"></div>';
+                        fetchContents(file.url,'&rdsh;   <span style="display: inline-block; background-color: #222">' + indent +"</span>");
                     } else {
-                        slideTab.innerHTML += indent + '<p class="file" style="cursor:pointer;" data-file="' + file.url + '">' + file.name + '</p><div class="file-content" style="display: none;"></div>';
+                        slideTab.innerHTML += indent + '<p class="file" style="cursor:pointer;display: inline-block;" data-file="' + file.url + '">&#8270;   ' + file.name + '</p><div class="file-content" style="visibility: hidden;"></div>';
                     }
                 });
             } else {
@@ -65,7 +65,7 @@ function fetchContents(url, indent = '') {
                 fileElement.addEventListener('click', function() {
                     var fileUrl = this.getAttribute('data-file');
                     var fileContentElement = this.nextElementSibling;
-                    if (fileContentElement.style.display === 'none') {
+                    if (fileContentElement.style.visibility === 'hidden') {
                         fetch(fileUrl)
                             .then(response => response.json())
                             .then(data => {
@@ -75,10 +75,13 @@ function fetchContents(url, indent = '') {
                                 } else {
                                     fileContentElement.textContent = 'Unable to fetch file content.';
                                 }
-                                fileContentElement.style.display = 'block';
+                                fileContentElement.style.visibility = 'visible';
+                                fileContentElement.style.opacity = '1';
                             });
                     } else {
-                        fileContentElement.style.display = 'none';
+                        fileContentElement.style.visibility = 'hidden';
+                        fileContentElement.style.opacity = '0';
+                        fileContentElement.textContent = '';
                     }
                 });
             });

@@ -39,6 +39,9 @@ h1{
     transform: translateY(-20px);
 }
 
+span .file{
+    display: inline;
+}
 .project:hover {
     background-color: rgb(86, 111, 147); /* changed */
     transform: translateY(-10px) translateX(10px); 
@@ -67,7 +70,10 @@ h1{
     color: white; /* changed */
     background-color: rgb(33, 44, 60); /* changed */
     padding: 10px;
-    display: none;
+    /*display: none;*/
+    transition: all 1s ease-out;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.5s linear;
 }
 .file{
     color: white;
@@ -76,9 +82,13 @@ h1{
     -ms-transition:     color 1s;
     -o-transition:      color 1s;
     transition:         color 1s;
+    margin: 10px;
+    margin-left: 0;
+    transition: all 1s ease-out;
 }
 .file:hover{
     color: yellow;
+    transform: translateX(20px);
 }
 a {
     text-decoration: none; 
